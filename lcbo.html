@@ -1,45 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LCBO Learnin'</title>
-     <script src="load.js">
-    </script>
-    <script>
-      var counter=0;
-      function loadStore(response) {
-        var el = document.getElementById('store_name');
-        if(response.result.name != null)
-            counter++;
-        el.innerHTML = response.result.name;
-        var count = Object.keys(response.result).length;
-        el.innerHTML = el.innerHTML+" "+counter+"<br>";
-        var obj = Object.keys(response.result)
-
-         var it=Iterator(Object.keys(response.result));
-
-         // for(var i=0; i<count; i++){
-         //  var current = it.next();
-         //  var str = current[1];
-         //  el.innerHTML=el.innerHTML+ current[1] +"= "+response.result[str] +"<br>";
-
-         // }
-
-       // for (var i = 0; i < count; i++){
-        // el.innerHTML= el.innerHTML+" "+i+" ";
-        // if(i%10==0)
-        //   el.innerHTML =el.innerHTML+"<br>";
-        // var obj = Object.keys(response.result)[i];
-        // el.innerHTML = el.innerHTML+obj;
-  // for (var key in obj){
-  //   var value = obj[key];
-  //   document.write("<br> - " + key + ": " + value);
-  //}
-//}
-}
-    </script>
+    <title>LCBO Info</title>
+     <script src="load.js"></script>
+     <script src="handle.js"></script>
   </head>
+
   <body>
-   
+      <p>Enter the store number: </p>
+      <input type="number" id="num" max="1000" min ="0" value="510">
+      <button id="submit">Submit</button>
+
+    <h1 id="stores"></h1>
     <h1 id="store_name"></h1>
+    <h2 id="product"></h2>
+
+    <script type="text/javascript">
+    if(document.getElementById('submit')!=null){
+        document.getElementById('submit').addEventListener('click',store);}
+    </script>
   </body>
 </html>
