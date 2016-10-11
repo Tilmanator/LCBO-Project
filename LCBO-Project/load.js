@@ -14,16 +14,14 @@ function store(){
   var script = document.createElement('script');
   script.src = 'http://lcboapi.com/stores/'+id+'?callback=loadStore';
   script.async = true;
-
   document.head.appendChild(script);
 }
 
-function loadProductAtStore(id){
+function loadProductsAtStore(id){
   var script = document.createElement('script');
-  script.src = 'http://lcboapi.com/products?callback=loadStores;store_id='+id;
+  script.src = 'http://lcboapi.com/products?store_id='+id+';order=price_in_cents.asc;callback=loadProduct';
   script.async = true;
   document.head.appendChild(script);
 }
-
 //for(var i=0;i<654;i++){loadStore(i);}
 loadStore(511);
