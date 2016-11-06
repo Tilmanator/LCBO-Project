@@ -18,15 +18,9 @@
       <div class="navbar" >
         <ul>
           <li><a href="./lcbo.html">Home</a></li>
-          <li><a class ="active" href="./map.html">Map</a></li>
-          <li><a href="./categories/soccer.html">Soccer</a></li>
-          <li><a href="./categories/education.html">Education</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">Random</a>
-            <div class="dropdown-content">
-              <a href="./categories/mandelbrot.html">Mandelbrot</a>
-              <a href="./categories/agario.html">Agar.io</a>
-              <a href="./categories/youtubers.html">Favourite Youtubers</a>
+          <li><a class ="active" href="#">Map</a></li>
+          <li><a href="./stores.html">Stores</a></li>
+          <li><a href="./products.html">Products</a></li>
             </div>
           </li>
         </ul>
@@ -58,7 +52,7 @@
         });
 
 
-        for (var i = 0; i < total; i++) {
+        for (var i = 0; i < numStores; i++) {
           var latLng = new google.maps.LatLng(stores[i].lat,stores[i].long);
           var marker = new google.maps.Marker({
             position: latLng,
