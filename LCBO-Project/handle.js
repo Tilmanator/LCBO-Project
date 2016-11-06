@@ -15,13 +15,25 @@ function loadStore(response) {
         el.innerHTML +='Open from '+ time((open/60 >> 0),(open%60))+
         ' to '+ time((close/60 >> 0),(close%60))+ '<br>';
 
-        loadProductsAtStore(response.result.id);
+        loadProductsAtStore(response.result.id, 1);
 }
 
 function loadProduct(response){
         var el = document.getElementById('product');
         var p = response.pager.records_per_page;
-        el.innerHTML+=p;
+        for(var i=0;i<p;i++){
+          var n = response.result[i].name;
+          if(n.toLowerCase().indexOf('kraken')!=-1)
+          { 
+        var img = response.result[i].image_url;
+        el.innerHTML = "<img src='"+img+"'>";
+          }
+        }
+
+        // var img = response.result[18].image_url;
+        // var e = response.result[7].name;
+        // el.innerHTML = "<img src='"+img+"'>";
+       // el.innerHTML= "<img src='"+img+"'>";
 }
 
 function allInfo (reponse) {

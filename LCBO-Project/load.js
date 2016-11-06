@@ -17,9 +17,11 @@ function store(){
   document.head.appendChild(script);
 }
 
-function loadProductsAtStore(id){
+function loadProductsAtStore(id, page){
+
   var script = document.createElement('script');
-  script.src = 'http://lcboapi.com/products?store_id='+id+';order=price_in_cents.asc;callback=loadProduct';
+  script.src = 'http://lcboapi.com/products?store_id='+id+';where=has_limited_time_offer;order=price_in_cents.asc;callback=loadProduct;page='
+  + page+';per_page=100';
   script.async = true;
   document.head.appendChild(script);
 }

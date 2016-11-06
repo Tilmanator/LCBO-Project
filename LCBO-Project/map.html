@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LCBO Info</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="style.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet"> 
+    <!-- <script src="load.js"></script>
+     <script src="handle.js"></script>-->
+     <script src="mapLoad.js"></script>
+  </head>
+
+
+  <body>
+        <div class="box"></div>
+      <h1 class ="fancy"> <center>LCBO Project</center></h1>
+
+      <div class="navbar" >
+        <ul>
+          <li><a href="./lcbo.html">Home</a></li>
+          <li><a class ="active" href="./map.html">Map</a></li>
+          <li><a href="./categories/soccer.html">Soccer</a></li>
+          <li><a href="./categories/education.html">Education</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Random</a>
+            <div class="dropdown-content">
+              <a href="./categories/mandelbrot.html">Mandelbrot</a>
+              <a href="./categories/agario.html">Agar.io</a>
+              <a href="./categories/youtubers.html">Favourite Youtubers</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <hr>
+
+    </div>  
+
+    <div id="map"></div>
+    <script>
+      var map;
+      var markers = [];
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: new google.maps.LatLng(43.4643,-80.5204),
+          mapTypeId: 'terrain'
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        //var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        //script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        //document.getElementsByTagName('head')[0].appendChild(script);
+        var infowindow = new google.maps.InfoWindow({
+          content: ''
+        });
+
+
+        for (var i = 0; i < total; i++) {
+          var latLng = new google.maps.LatLng(stores[i].lat,stores[i].long);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: 'Click to choose as preferred store'//stores[i].name
+            //label: i.toString()
+          });
+
+          markers.push(marker);
+          markers[i].addListener('click', function() {
+          infowindow.close();
+          map.setZoom(12);
+          map.setCenter(this.getPosition());
+          currStore = stores[i];
+          infowindow.setContent('<a href="./lcbo.html"> Home</a>');
+          infowindow.open(map,this);
+        });
+
+
+          markers[i].addListener('mouseover', function() {
+            var index = markers.indexOf(this);
+            infowindow.setContent(stores[index].name);
+            infowindow.open(map,this);
+        });
+
+
+          markers[i].addListener('mouseout', function() {
+            //infowindow.close();
+        });
+      }
+
+          
+      }
+    </script>
+   <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?callback=initMap"> //key=YOUR_API_KEY&
+    </script>-->
+  </body>
+</html>
