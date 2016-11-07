@@ -30,6 +30,7 @@
 
     </div>  
 
+    <div id="mapBox"> Click on a store </div>
     <div id="map"></div>
     <script>
       var map;
@@ -66,7 +67,10 @@
           infowindow.close();
           map.setZoom(12);
           map.setCenter(this.getPosition());
-          currStore = stores[i];
+          var index = markers.indexOf(this);
+          currStore = stores[index];
+          document.getElementById('mapBox').innerHTML = currStore.name+'<br>Address: '+
+          currStore.address +'<br>Open from whenever <br>';
           infowindow.setContent('<a href="./lcbo.html"> Home</a>');
           infowindow.open(map,this);
         });

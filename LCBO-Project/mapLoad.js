@@ -2,11 +2,12 @@ var numStores=0;
 var stores=[];
 var currStore = null;
 
-function storeInfo(id, name, lat, long){
+function storeInfo(id, name, lat, long,address){
 this.id=id;
 this.name=name;
 this.lat=lat;
 this.long=long;
+this.address=address;
 }
 
 function loadStores(page) {
@@ -20,7 +21,7 @@ function loadStores(page) {
 function loadMore(response){
   for(var i=0; i< response.pager.current_page_record_count; i++){
     var r = response.result[i];
-    var c = new storeInfo(r.id, r.name, r.latitude, r.longitude);
+    var c = new storeInfo(r.id, r.name, r.latitude, r.longitude,r.address_line_1);
     stores.push(c);
   }
 

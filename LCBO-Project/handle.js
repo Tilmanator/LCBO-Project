@@ -29,11 +29,6 @@ function loadProduct(response){
         el.innerHTML = "<img src='"+img+"'>";
           }
         }
-
-        // var img = response.result[18].image_url;
-        // var e = response.result[7].name;
-        // el.innerHTML = "<img src='"+img+"'>";
-       // el.innerHTML= "<img src='"+img+"'>";
 }
 
 function allInfo (reponse) {
