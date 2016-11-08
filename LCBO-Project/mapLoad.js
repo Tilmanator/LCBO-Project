@@ -1,15 +1,14 @@
 var numStores=0;
 var stores=[];
 var currStore = null;
-var favStore=localStorage.store;
 localStorage.currStore=null;
 
 function storeInfo(id, name, lat, long,address){
-this.id=id;
-this.name=name;
-this.lat=lat;
-this.long=long;
-this.address=address;
+    this.id=id;
+    this.name=name;
+    this.lat=lat;
+    this.long=long;
+    this.address=address;
 }
 
 function loadStores(page) {

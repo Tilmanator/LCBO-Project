@@ -8,9 +8,9 @@ function store(){
   script.src = 'http://lcboapi.com/stores/'+v+'?callback=loadStore';
   script.async = true;
   document.head.appendChild(script);
-}
+  }
 
- function loadStore(id) {
+ function initialStoreLoad(id) {
   var script = document.createElement('script');
   script.src = 'http://lcboapi.com/stores/'+id+'?callback=loadStore';
   script.async = true;
@@ -25,5 +25,20 @@ function loadProductsAtStore(id, page){
   script.async = true;
   document.head.appendChild(script);
 }
+
 //for(var i=0;i<654;i++){loadStore(i);}
-loadStore(511);
+
+function start(){
+if(localStorage.currStore!= "null"){
+    document.getElementById('num').value=parseInt(localStorage.currStore);
+  initialStoreLoad(localStorage.currStore);
+}
+else if(localStorage.store!="null"){
+  initialStoreLoad(localStorage.store);
+  document.getElementById('num').value=localStorage.store;
+}
+else{
+initialStoreLoad(510);
+}}
+
+window.onload= start;

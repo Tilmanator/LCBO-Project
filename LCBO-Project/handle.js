@@ -1,9 +1,8 @@
 
 function loadStore(response) {
         var el = document.getElementById('store_name');
-
         var days = ["sunday_open","sunday_close","monday_open","monday_close","tuesday_open","tuesday_close","wednesday_open",
-"wednesday_close","thursday_open","thursday_close","friday_open","friday_close","saturday_open","saturday_close"];
+        "wednesday_close","thursday_open","thursday_close","friday_open","friday_close","saturday_open","saturday_close"];
 
         // //var deprecated = response.result.is_dead;
         var d = new Date();

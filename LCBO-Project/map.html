@@ -68,7 +68,7 @@
           markers.push(marker);
           markers[i].addListener('click', function() {
           currStore=this.id;
-          if(map.getZoom<12)
+          if(map.getZoom()<12)
               map.setZoom(12);
           map.setCenter(this.getPosition());
           var index = markers.indexOf(this);
