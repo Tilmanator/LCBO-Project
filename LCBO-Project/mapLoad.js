@@ -1,6 +1,8 @@
 var numStores=0;
 var stores=[];
 var currStore = null;
+var favStore=localStorage.store;
+localStorage.currStore=null;
 
 function storeInfo(id, name, lat, long,address){
 this.id=id;
@@ -37,6 +39,13 @@ function loadMore(response){
      script.async = true;
      document.head.appendChild(script);
   }
+}
+
+function saveFavourite(){
+  if(currStore!=null){
+  alert('change from '+ localStorage.store+' to '+currStore.id);
+  localStorage.store = currStore.id;
+}
 }
 
 loadStores(1);

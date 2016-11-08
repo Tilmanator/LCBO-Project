@@ -3,9 +3,14 @@
 #mapBox{
     padding: 5px;
     width: 18%;
-    height:70%;
-    float:left; /* add this */
+    height:50%;
+    margin-bottom: 0;
+    float:left;/* add this */
     /*border: 1px solid red;*/
+}
+
+#saveFav{
+    margin-left: 0px;
 }
 
 #map {

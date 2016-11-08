@@ -23,10 +23,10 @@ function loadProduct(response){
         var p = response.pager.records_per_page;
         for(var i=0;i<p;i++){
           var n = response.result[i].name;
-          if(n.toLowerCase().indexOf('kraken')!=-1)
+          if(n.toLowerCase().indexOf('gold')!=-1)
           { 
         var img = response.result[i].image_url;
-        el.innerHTML = "<img src='"+img+"'>";
+        el.innerHTML = "Specialty Products: <br><img src='"+img+"'>";
           }
         }
 }

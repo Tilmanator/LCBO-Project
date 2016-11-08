@@ -31,10 +31,13 @@
     </div>  
 
     <div id="mapBox"> Click on a store </div>
+
     <div id="map"></div>
+    <button id="saveFav">Save as Favourite</button>
     <script>
       var map;
       var markers = [];
+      var showInfo= false;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 11,
@@ -58,21 +61,24 @@
           var marker = new google.maps.Marker({
             position: latLng,
             map: map,
-            title: 'Click to choose as preferred store'//stores[i].name
+            title: 'Click to view more information'//stores[i].name
             //label: i.toString()
           });
 
           markers.push(marker);
           markers[i].addListener('click', function() {
-          infowindow.close();
-          map.setZoom(12);
+          currStore=this.id;
+          if(map.getZoom<12)
+              map.setZoom(12);
           map.setCenter(this.getPosition());
           var index = markers.indexOf(this);
           currStore = stores[index];
           document.getElementById('mapBox').innerHTML = currStore.name+'<br>Address: '+
-          currStore.address +'<br>Open from whenever <br>';
-          infowindow.setContent('<a href="./lcbo.html"> Home</a>');
-          infowindow.open(map,this);
+          currStore.address +'<br>Open from whenever <br>'+'<a href="./stores.html">See products at this store</a>';
+          localStorage.currStore = currStore.id;
+          //infowindow.close();
+          //infowindow.setContent('<a href="./lcbo.html"> Home</a>');
+          //infowindow.open(map,this);
         });
 
 
@@ -80,12 +86,18 @@
             var index = markers.indexOf(this);
             infowindow.setContent(stores[index].name);
             infowindow.open(map,this);
+            showInfo=true;
         });
 
-
-          markers[i].addListener('mouseout', function() {
-            //infowindow.close();
+        markers[i].addListener('mouseout', function() {
+          showInfo=false;
+          var index = markers.indexOf(this);
+            window.setTimeout(function() {
+              if(!showInfo && infowindow.getContent() == stores[index].name){
+                  infowindow.close();}
+          }, 3000);
         });
+          
       }
 
           
@@ -94,5 +106,9 @@
    <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?callback=initMap"> //key=YOUR_API_KEY&
     </script>-->
+    <script>
+     if(document.getElementById('saveFav')!=null){
+        document.getElementById('saveFav').addEventListener('click',saveFavourite);}
+    </script>
   </body>
 </html>
