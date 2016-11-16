@@ -14,7 +14,6 @@ function storeInfo(id, name, lat, long,address){
 function loadStores(page) {
   var script = document.createElement('script');
   script.src = 'http://lcboapi.com/stores?per_page=100;where_not=is_dead;page='+page+';callback=loadMore';
-
   script.async = true;
   document.head.appendChild(script);
 }
@@ -35,8 +34,8 @@ function loadMore(response){
   {
     var script = document.createElement('script');
     script.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap';
-     script.async = true;
-     document.head.appendChild(script);
+    script.async = true;
+    document.head.appendChild(script);
   }
 }
 
