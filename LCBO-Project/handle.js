@@ -13,21 +13,39 @@ function loadStore(response) {
         el.innerHTML=  response.result.name +  '<br>';
         el.innerHTML +='Open from '+ time((open/60 >> 0),(open%60))+
         ' to '+ time((close/60 >> 0),(close%60))+ '<br>';
-
         loadProductsAtStore(response.result.id, 1);
 }
 
 function loadProduct(response){
-        var el = document.getElementById('product');
-        var p = response.pager.records_per_page;
-        for(var i=0;i<p;i++){
-          var n = response.result[i].name;
-          if(n.toLowerCase().indexOf('gold')!=-1)
-          { 
-        var img = response.result[i].image_url;
-        el.innerHTML = "Specialty Products: <br><img src='"+img+"'>";
-          }
+        var el = document.getElementById('products');
+        el.innerHTML="";
+        var imgs = [];
+        var numRecords = response.pager.records_per_page;
+        for(var i=0;i<numRecords;i++){
+           if(response.result[i].image_url!=null){
+            var n = response.result[i];
+            //var img = response.result[i].image_url;
+
+            var x = document.createElement("IMG");
+            x.src= response.result[i].image_url;
+            x.value = i;
+            //x.style="width:5%;height:50px;float:left;";
+            imgs.push(x);
+            imgs[i].addEventListener('click',function(){ return productInfo(response.result[this.value]); });
+            el.appendChild(imgs[i]);
+
+         
+            //el.innerHTML +="<img src='"+img+"'>";
         }
+      }
+}
+
+function productInfo(result){
+  var str = result.name + "\n";
+  str+= "Price: $"+result.price_in_cents/100 + "\n"
+  str+="Alcohol/Vol. : "+ (result.alcohol_content/100)+"%\n";
+  if(result.origin!=null)str+="Origin: "+result.origin;
+  alert(str);
 }
 
 function allInfo (reponse) {
