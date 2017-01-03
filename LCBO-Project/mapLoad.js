@@ -33,7 +33,7 @@ function loadMore(response){
   else
   {
     var script = document.createElement('script');
-    script.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap';
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA3OvksP4D6uxeklO-kGRn8onJvjnVi11A&callback=initMap';
     script.async = true;
     document.head.appendChild(script);
   }
