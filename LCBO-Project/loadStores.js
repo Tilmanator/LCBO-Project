@@ -2,6 +2,7 @@
 	This is where we request and receive the data from the API
  */
 
+// Call for information at a specific store
 function store(){
 	var v = document.getElementById('num').value;
 	var script = document.createElement('script');
@@ -17,6 +18,7 @@ function store(){
   document.head.appendChild(script);
 }
 
+// Load products from a specific page at a specific store
 function loadProductsAtStore(id, page){
 
   var script = document.createElement('script');
@@ -26,8 +28,7 @@ function loadProductsAtStore(id, page){
   document.head.appendChild(script);
 }
 
-//for(var i=0;i<654;i++){loadStore(i);}
-
+// Check whether local storage has stores saved already
 function start(){
 if(localStorage.currStore!= "null"){
     document.getElementById('num').value=parseInt(localStorage.currStore);

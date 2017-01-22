@@ -1,10 +1,10 @@
 
+// Handles basic information to be displayed about a store
 function loadStore(response) {
         var el = document.getElementById('store_name');
         var days = ["sunday_open","sunday_close","monday_open","monday_close","tuesday_open","tuesday_close","wednesday_open",
         "wednesday_close","thursday_open","thursday_close","friday_open","friday_close","saturday_open","saturday_close"];
 
-        // //var deprecated = response.result.is_dead;
         var d = new Date();
         var open = response.result[days[d.getDay()*2]];
         var close = response.result[days[d.getDay()*2+1]];
@@ -16,6 +16,7 @@ function loadStore(response) {
         loadProductsAtStore(response.result.id, 1);
 }
 
+// Displays all requested products
 function loadProduct(response){
         var el = document.getElementById('products');
         el.innerHTML="";
@@ -24,22 +25,22 @@ function loadProduct(response){
         for(var i=0;i<numRecords;i++){
            if(response.result[i].image_url!=null){
             var n = response.result[i];
-            //var img = response.result[i].image_url;
 
+            // Need to assign a value for later reference
             var x = document.createElement("IMG");
             x.src= response.result[i].image_url;
             x.value = i;
             //x.style="width:5%;height:50px;float:left;";
             imgs.push(x);
+
+            // Needs functional return so it does not immediately call the function
             imgs[i].addEventListener('click',function(){ return productInfo(response.result[this.value]); });
             el.appendChild(imgs[i]);
-
-         
-            //el.innerHTML +="<img src='"+img+"'>";
         }
       }
 }
 
+// Display basic information as a popup alert
 function productInfo(result){
   var str = result.name + "\n";
   str+= "Price: $"+result.price_in_cents/100 + "\n"
@@ -48,6 +49,7 @@ function productInfo(result){
   alert(str);
 }
 
+// Shows everything about a store
 function allInfo (reponse) {
         var obj = Object.keys(response.result);
         var count = obj.length;
@@ -57,7 +59,6 @@ function allInfo (reponse) {
          for(var i=0; i<count-1; i++){
           var current = it.next();
           var str = current[1];
-          //el.append(str +"= "+response.result[str] +"<br>");
           el.innerHTML=el.innerHTML+ str +"= "+response.result[str] +"<br>";
          }
 }
@@ -68,6 +69,7 @@ function loadStores(response){
      var count = Object.keys(response.result[1]).length;
 }
 
+// Formatting
 function time(n,m){
  var s = n +":";
  if(m>=10){
